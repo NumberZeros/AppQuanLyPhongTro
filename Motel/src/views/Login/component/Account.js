@@ -48,7 +48,10 @@ export default class SegmentOutsideHeaderExample extends PureComponent {
                   <Button
                     rounded
                     info
-                    onPress={() => this.props.actions.login()}>
+                    onPress={() => {
+                      actions.handleLogin();
+                      actions.handleCreate();
+                    }}>
                     <Text> Sửa thông tin tài khoản </Text>
                   </Button>
                 </CardItem>

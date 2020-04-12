@@ -8,6 +8,7 @@ const initialState = freeze({
   data: {},
   isLoading: false,
   isLogin: false,
+  isCreate: false,
 });
 
 export default handleActions(
@@ -30,6 +31,12 @@ export default handleActions(
       return freeze({
         ...state,
         isLogin: !state.isLogin,
+      });
+    },
+    [actions.handleCreate]: (state, action) => {
+      return freeze({
+        ...state,
+        isCreate: !state.isCreate,
       });
     },
   },

@@ -11,9 +11,10 @@ import {
   Text,
 } from 'native-base';
 
-export default class Login extends PureComponent {
+export default class Motel extends PureComponent {
   render() {
-    console.log(JSON.stringify(this.props));
+    const {motel} = this.props;
+    console.log(motel);
     return (
       <Container>
         <Header />
@@ -27,8 +28,8 @@ export default class Login extends PureComponent {
               <Label>Password</Label>
               <Input />
             </Item>
-            <Button onPress={() => this.props.actions.login()}>
-              <Text> Login </Text>
+            <Button onPress={() => this.props.actions.Motel()}>
+              <Text> Motel </Text>
             </Button>
           </Form>
         </Content>
