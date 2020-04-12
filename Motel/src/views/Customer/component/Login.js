@@ -16,6 +16,7 @@ export default class Login extends PureComponent {
     console.log(JSON.stringify(this.props));
     return (
       <Container>
+        <Header />
         <Content>
           <Form>
             <Item fixedLabel>
@@ -26,11 +27,8 @@ export default class Login extends PureComponent {
               <Label>Password</Label>
               <Input />
             </Item>
-            <Button rounded info onPress={() => this.props.actions.login()}>
-              <Text> Đăng Nhập </Text>
-            </Button>
-            <Button rounded info onPress={() => this.props.actions.login()}>
-              <Text> Tạo Tài Khoản </Text>
+            <Button onPress={() => this.props.actions.login()}>
+              <Text> Login </Text>
             </Button>
           </Form>
         </Content>

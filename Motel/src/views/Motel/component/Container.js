@@ -4,9 +4,8 @@ import {connect} from 'react-redux';
 import {name} from '../reducers';
 import * as action from '../actions';
 import Login from './Login.js';
-import Account from "./Account"
-import {Spinner} from 'native-base';
 import {View} from 'react-native';
+import {Spinner} from 'native-base';
 
 class Container extends PureComponent {
   componentDidMount() {
@@ -24,8 +23,7 @@ class Container extends PureComponent {
     }
     return (
       <React.Fragment>
-        {/* <Login {...this.props} /> */}
-        <Account {...this.props} />
+        <Login {...this.props} />
       </React.Fragment>
     );
   }

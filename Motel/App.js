@@ -1,9 +1,10 @@
 import React, {PureComponent, Fragment} from 'react';
-import {View, Button} from 'react-native';
+import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import Home from './src/views/HomeScreen';
-import About from './src/views/AboutScreen';
+import Home from './src/views/Home/component/Container';
+import Motel from './src/views/Motel/component/Container';
+import Customer from './src/views/Customer/component/Container';
 import Login from './src/views/Login/component/Container';
 import 'react-native-gesture-handler';
 import redux from './src/redux/redux';
@@ -15,52 +16,127 @@ const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
 
-function HomeStackScreen({navigation}) {
+function HomeStackScreen({navigation, props}) {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={Home}  options={{
+      <HomeStack.Screen
+        name="Home"
+        {...this.props}
+        component={Home}
+        options={{
           headerLeft: () => (
             <Button
               onPress={() => navigation.toggleDrawer()}
-              title="Info"
-              color="#black"
+              title="Menu"
+              color="#000"
             />
           ),
-        }}/>
-      <HomeStack.Screen name="About" component={About} />
+        }}
+        {...this.props}
+      />
+      <HomeStack.Screen name="Motel" {...this.props} component={Motel} />
+      <HomeStack.Screen name="Customer" {...this.props} component={Customer} />
+      <HomeStack.Screen name="Login" component={Login} />
     </HomeStack.Navigator>
   );
 }
 
-const SettingsStack = createStackNavigator();
+const MotelStack = createStackNavigator();
 
-function SettingsStackScreen() {
+function MotelStackScreen({navigation, props}) {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="About" component={About} />
-      <SettingsStack.Screen name="Login" component={Login} />
-    </SettingsStack.Navigator>
+    <MotelStack.Navigator>
+      <MotelStack.Screen
+        name="Motel"
+        {...this.props}
+        component={Motel}
+        options={{
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.toggleDrawer()}
+              title="Menu"
+              color="#000"
+            />
+          ),
+        }}
+        {...this.props}
+      />
+      <MotelStack.Screen name="Home" {...this.props} component={Home} />
+      <MotelStack.Screen name="Customer" {...this.props} component={Customer} />
+      <MotelStack.Screen name="Login" component={Login} />
+    </MotelStack.Navigator>
   );
 }
 
-function AppPage() {
+const CustomerStack = createStackNavigator();
+
+function CustomerStackScreen({navigation, props}) {
+  return (
+    <CustomerStack.Navigator>
+      <CustomerStack.Screen
+        name="Customer"
+        {...this.props}
+        component={Customer}
+        options={{
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.toggleDrawer()}
+              title="Menu"
+              color="#000"
+            />
+          ),
+        }}
+        {...this.props}
+      />
+      <CustomerStack.Screen name="Home" {...this.props} component={Home} />
+      <CustomerStack.Screen name="Motel" {...this.props} component={Motel} />
+      <CustomerStack.Screen name="Login" component={Login} />
+    </CustomerStack.Navigator>
+  );
+}
+
+const LoginStack = createStackNavigator();
+
+function LoginStackScreen({navigation, props}) {
+  return (
+    <LoginStack.Navigator>
+      <LoginStack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerLeft: () => (
+            <Button
+              onPress={() => navigation.toggleDrawer()}
+              title="Menu"
+              color="#000"
+            />
+          ),
+        }}
+        {...this.props}
+      />
+      <LoginStack.Screen name="Home" {...this.props} component={Home} />
+      <LoginStack.Screen name="Motel" {...this.props} component={Motel} />
+      <LoginStack.Screen name="Customer" {...this.props} component={Customer} />
+    </LoginStack.Navigator>
+  );
+}
+
+function AppPage({props}) {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="About" component={SettingsStackScreen} />
+      <Tab.Screen name="Home" {...this.props} component={HomeStackScreen} />
+      <Tab.Screen name="Motel" {...this.props} component={MotelStackScreen} />
+      <Tab.Screen
+        name="Customer"
+        {...this.props}
+        component={CustomerStackScreen}
+      />
+      <Tab.Screen name="Login" component={LoginStackScreen} />
     </Tab.Navigator>
   );
 }
 
 const Drawer = createDrawerNavigator();
-
-function Plugin({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
 
 export default class App extends PureComponent {
   render() {
@@ -69,8 +145,11 @@ export default class App extends PureComponent {
         <Fragment>
           <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen name="AppPage" component={AppPage} />
-              <Drawer.Screen name="Plugin" component={Plugin} />
+              <Drawer.Screen
+                name="AppPage"
+                {...this.props}
+                component={AppPage}
+              />
             </Drawer.Navigator>
           </NavigationContainer>
         </Fragment>

@@ -4,9 +4,6 @@ import {connect} from 'react-redux';
 import {name} from '../reducers';
 import * as action from '../actions';
 import Login from './Login.js';
-import Account from "./Account"
-import {Spinner} from 'native-base';
-import {View} from 'react-native';
 
 class Container extends PureComponent {
   componentDidMount() {
@@ -16,16 +13,11 @@ class Container extends PureComponent {
   render() {
     const {isLoading} = this.props;
     if (isLoading) {
-      return (
-        <View>
-          <Spinner color="red" />
-        </View>
-      );
+      // return <div className="loading" />;
     }
     return (
       <React.Fragment>
-        {/* <Login {...this.props} /> */}
-        <Account {...this.props} />
+        <Login {...this.props} />
       </React.Fragment>
     );
   }
