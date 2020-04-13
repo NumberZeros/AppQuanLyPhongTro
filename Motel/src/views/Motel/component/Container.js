@@ -2,10 +2,10 @@ import React, {PureComponent} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {name} from '../reducers';
+import Motel from './Motel';
 import * as action from '../actions';
-import Motel from './Motel.js';
-import {View} from 'react-native';
 import {Spinner} from 'native-base';
+import {View} from 'react-native';
 
 class Container extends PureComponent {
   componentDidMount() {

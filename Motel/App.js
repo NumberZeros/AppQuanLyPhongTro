@@ -7,7 +7,7 @@ import Motel from './src/views/Motel/component/Container';
 import Customer from './src/views/Customer/component/Container';
 import Login from './src/views/Login/component/Container';
 import 'react-native-gesture-handler';
-import redux from './src/redux/redux';
+import store from './src/redux/redux';
 import {Provider} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -21,7 +21,6 @@ function HomeStackScreen({navigation, props}) {
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Home"
-        {...this.props}
         component={Home}
         options={{
           headerLeft: () => (
@@ -32,10 +31,9 @@ function HomeStackScreen({navigation, props}) {
             />
           ),
         }}
-        {...this.props}
       />
-      <HomeStack.Screen name="Motel" {...this.props} component={Motel} />
-      <HomeStack.Screen name="Customer" {...this.props} component={Customer} />
+      <HomeStack.Screen name="Motel" component={Motel} />
+      <HomeStack.Screen name="Customer" component={Customer} />
       <HomeStack.Screen name="Login" component={Login} />
     </HomeStack.Navigator>
   );
@@ -48,7 +46,6 @@ function MotelStackScreen({navigation, props}) {
     <MotelStack.Navigator>
       <MotelStack.Screen
         name="Motel"
-        {...this.props}
         component={Motel}
         options={{
           headerLeft: () => (
@@ -59,10 +56,9 @@ function MotelStackScreen({navigation, props}) {
             />
           ),
         }}
-        {...this.props}
       />
-      <MotelStack.Screen name="Home" {...this.props} component={Home} />
-      <MotelStack.Screen name="Customer" {...this.props} component={Customer} />
+      <MotelStack.Screen name="Home" component={Home} />
+      <MotelStack.Screen name="Customer" component={Customer} />
       <MotelStack.Screen name="Login" component={Login} />
     </MotelStack.Navigator>
   );
@@ -75,7 +71,6 @@ function CustomerStackScreen({navigation, props}) {
     <CustomerStack.Navigator>
       <CustomerStack.Screen
         name="Customer"
-        {...this.props}
         component={Customer}
         options={{
           headerLeft: () => (
@@ -86,10 +81,9 @@ function CustomerStackScreen({navigation, props}) {
             />
           ),
         }}
-        {...this.props}
       />
-      <CustomerStack.Screen name="Home" {...this.props} component={Home} />
-      <CustomerStack.Screen name="Motel" {...this.props} component={Motel} />
+      <CustomerStack.Screen name="Home" component={Home} />
+      <CustomerStack.Screen name="Motel" component={Motel} />
       <CustomerStack.Screen name="Login" component={Login} />
     </CustomerStack.Navigator>
   );
@@ -112,11 +106,10 @@ function LoginStackScreen({navigation, props}) {
             />
           ),
         }}
-        {...this.props}
       />
-      <LoginStack.Screen name="Home" {...this.props} component={Home} />
-      <LoginStack.Screen name="Motel" {...this.props} component={Motel} />
-      <LoginStack.Screen name="Customer" {...this.props} component={Customer} />
+      <LoginStack.Screen name="Home" component={Home} />
+      <LoginStack.Screen name="Motel" component={Motel} />
+      <LoginStack.Screen name="Customer" component={Customer} />
     </LoginStack.Navigator>
   );
 }
@@ -124,13 +117,9 @@ function LoginStackScreen({navigation, props}) {
 function AppPage({props}) {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" {...this.props} component={HomeStackScreen} />
-      <Tab.Screen name="Motel" {...this.props} component={MotelStackScreen} />
-      <Tab.Screen
-        name="Customer"
-        {...this.props}
-        component={CustomerStackScreen}
-      />
+      <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Motel" component={MotelStackScreen} />
+      <Tab.Screen name="Customer" component={CustomerStackScreen} />
       <Tab.Screen name="Login" component={LoginStackScreen} />
     </Tab.Navigator>
   );
@@ -141,15 +130,11 @@ const Drawer = createDrawerNavigator();
 export default class App extends PureComponent {
   render() {
     return (
-      <Provider store={redux.store}>
+      <Provider store={store}>
         <Fragment>
           <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen
-                name="AppPage"
-                {...this.props}
-                component={AppPage}
-              />
+              <Drawer.Screen name="AppPage" component={AppPage} />
             </Drawer.Navigator>
           </NavigationContainer>
         </Fragment>

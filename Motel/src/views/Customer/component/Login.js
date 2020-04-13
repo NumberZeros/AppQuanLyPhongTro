@@ -13,7 +13,6 @@ import {
 
 export default class Login extends PureComponent {
   render() {
-    console.log(JSON.stringify(this.props));
     return (
       <Container>
         <Header />
