@@ -5,6 +5,7 @@ import {takeAction} from '../../../services/forkActionSagas';
 
 export function* handleLogin(action) {
   try {
+    console.log(action.payload.data);
     let res = yield call(API.login, action.payload);
     yield put(actions.loginSuccess(res));
   } catch (err) {
