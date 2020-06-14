@@ -21,18 +21,25 @@ export default handleActions(
         isLogin: action.payload ? true : false,
       });
     },
+    [actions.editAcountSuccess]: (state, action) => {
+      return freeze({
+        ...state,
+        isLoading: false,
+        data: action.payload.data,
+      });
+    },
     [actions.handleInputChange]: (state, action) => {
       const event = action.payload;
       const target = event.target;
-      const value = target.type === "checkbox" ? target.checked : target.value;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
       const name = target.name;
       return freeze({
         ...state,
         message: initialState.message,
         data: {
           ...state.data,
-          [name]: value
-        }
+          [name]: value,
+        },
       });
     },
   },
