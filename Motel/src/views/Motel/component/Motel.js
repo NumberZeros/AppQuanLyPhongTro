@@ -1,50 +1,53 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {
   Container,
   Card,
   CardItem,
+  Left,
+  Right,
   Body,
   Button,
-  Segment,
-  Content,
   Text,
 } from 'native-base';
-export default class SegmentOutsideHeaderExample extends PureComponent {
-  render() {
-    const {motel, isMotel, actions} = this.props;
-    return (
-      <Container>
-        <Segment>
-          <Button
-            first
-            active={isMotel === false ? true : false}
-            onPress={() => actions.handleMotel()}>
-            <Text>Thông tin tài khoản</Text>
-          </Button>
-          <Button active={isMotel} onPress={() => actions.handleMotel()}>
-            <Text>Đăng nhập</Text>
-          </Button>
-        </Segment>
-        {motel.map((o, index) => (
-          <Card>
-            <CardItem header bordered>
-              <Text>NativeBase</Text>
-            </CardItem>
+import {get} from 'lodash';
+export default function CardMotesl(props) {
+  const {motels} = props;
+  return (
+    <Container>
+      {motels.map((o, index) => (
+        <Card key={index}>
+          <CardItem>
+            <Left>
+              <Text>Tên phòng :</Text>
+              <Text>{get(o, 'name', 'Chưa có thông tin')}</Text>
+            </Left>
+            <Right>
+              <Button>
+                <Text>Sửa</Text>
+              </Button>
+            </Right>
+          </CardItem>
+          <CardItem header bordered>
+            <Text>Giá tiền:</Text>
+            <Text>{get(o, 'prices', 'Chưa có thông tin')}</Text>
+          </CardItem>
+          <CardItem header bordered>
+            <Text>Số nước hiện hành:</Text>
+            <Text>{get(o, 'initWater', 'Chưa có thông tin')}</Text>
+          </CardItem>
+          <CardItem header bordered>
+            <Text>Số điện hiện hành:</Text>
+            <Text>{get(o, 'initPower', 'Chưa có thông tin')}</Text>
+          </CardItem>
+          {o.notes && (
             <CardItem bordered>
               <Body>
-                <Text>
-                  NativeBase is a free and open source framework that enable
-                  developers to build high-quality mobile apps using React
-                  Native iOS and Android apps with a fusion of ES6.
-                </Text>
+                <Text>{get(o, 'notes', 'Chưa có thông tin')}</Text>
               </Body>
             </CardItem>
-            <CardItem footer bordered>
-              <Text>GeekyAnts</Text>
-            </CardItem>
-          </Card>
-        ))}
-      </Container>
-    );
-  }
+          )}
+        </Card>
+      ))}
+    </Container>
+  );
 }
