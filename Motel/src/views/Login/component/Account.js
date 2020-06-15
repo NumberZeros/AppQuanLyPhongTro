@@ -12,7 +12,6 @@ import {
   Item,
   Input,
   Label,
-  Footer,
 } from 'native-base';
 import {View} from 'react-native';
 import Login from './Login';
