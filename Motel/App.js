@@ -13,7 +13,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 ///Motel
-import CreateMotel from "./src/views/Motel/component/CreateMotel"
+import CreateMotel from './src/views/Motel/component/CreateMotel';
+
+//customer
+import ControlContact from './src/views/Customer/component/ControlContact';
+import ControlCustomer from './src/views/Customer/component/ControlCustomer';
+
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -80,9 +85,11 @@ function CustomerStackScreen({navigation, props}) {
           ),
         }}
       />
-      <CustomerStack.Screen name="Home" component={Home} />
-      <CustomerStack.Screen name="Motel" component={Motel} />
-      <CustomerStack.Screen name="Login" component={Login} />
+      <CustomerStack.Screen name="controlContact" component={ControlContact} />
+      <CustomerStack.Screen
+        name="controlCustomer"
+        component={ControlCustomer}
+      />
     </CustomerStack.Navigator>
   );
 }

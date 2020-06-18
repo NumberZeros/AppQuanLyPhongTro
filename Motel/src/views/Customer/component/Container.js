@@ -7,9 +7,12 @@ import Customers from './Customers.js';
 import {isEmpty} from 'lodash';
 
 function Container(props) {
-  const {customers, actions} = props;
+  const {customers, contacts, actions} = props;
   useEffect(() => {
     if (isEmpty(customers)) {
+      actions.fetchAllCustomers();
+    }
+    if (isEmpty(contacts)) {
       actions.fetchAllCustomers();
     }
   });
@@ -27,6 +30,7 @@ function Container(props) {
 function mapStateToProps(state) {
   return {
     ...state[name],
+    isLogin: state.Login.isLogin,
   };
 }
 function mapDispatchToProps(dispatch) {
