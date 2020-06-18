@@ -1,6 +1,8 @@
 import {createAction} from 'redux-actions';
 
 export const hanldeInputChange = createAction('MOTEL/HANDLE_INPUT_CHANGE');
+export const hanldeSearchChange = createAction('MOTEL/HANDLE_SEARCH_CHANGE');
+
 export const handleLogin = createAction('MOTEL/HANDLE_LOGIN');
 export const handleCreate = createAction('MOTEL/HANDLE_CREATE');
 

@@ -12,6 +12,8 @@ import {Provider} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
+///Motel
+import CreateMotel from "./src/views/Motel/component/CreateMotel"
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -32,7 +34,7 @@ function HomeStackScreen({navigation, props}) {
           ),
         }}
       />
-      <HomeStack.Screen name="Motel" component={Motel} />
+      <HomeStack.Screen name="Motel" component={CreateMotel} />
       <HomeStack.Screen name="Customer" component={Customer} />
       <HomeStack.Screen name="Login" component={Login} />
     </HomeStack.Navigator>
@@ -57,6 +59,7 @@ function MotelStackScreen({navigation, props}) {
           ),
         }}
       />
+      <MotelStack.Screen name="CreateMotel" component={CreateMotel} />
       <MotelStack.Screen name="Home" component={Home} />
       <MotelStack.Screen name="Customer" component={Customer} />
       <MotelStack.Screen name="Login" component={Login} />
