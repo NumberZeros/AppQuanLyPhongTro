@@ -2,18 +2,35 @@ import freeze from 'deep-freeze';
 import {handleActions} from 'redux-actions';
 import * as actions from './actions';
 
-export const name = 'Login';
+export const name = 'Customers';
 
 const initialState = freeze({
   data: {},
+  isloading: false,
+  customers: [],
+  contacts: [],
+  tabs: 'customers',
 });
 
 export default handleActions(
   {
-    [actions.loginSuccess]: (state, action) => {
+    [actions.fetchAllCustomers]: (state, action) => {
       return freeze({
         ...state,
-        data: action.payload,
+        isloading: true,
+      });
+    },
+    [actions.fetchAllCustomersSuccess]: (state, action) => {
+      return freeze({
+        ...state,
+        isloading: false,
+        customers: action.payload.data,
+      });
+    },
+    [actions.onChangeTab]: (state, action) => {
+      return freeze({
+        ...state,
+        tabs: action.payload.value,
       });
     },
   },

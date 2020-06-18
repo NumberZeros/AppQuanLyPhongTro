@@ -1,21 +1,21 @@
 import {call, put} from 'redux-saga/effects';
 import * as actions from '../actions';
-import * as API from '../../../apis/login';
+import * as API from '../../../apis/customer';
 import {takeAction} from '../../../services/forkActionSagas';
 
-export function* handleLogin(action) {
+export function* handlefetchAllCustomers(action) {
   try {
-    let res = yield call(API.login, action.payload);
-    yield put(actions.loginSuccess(res));
+    let res = yield call(API.fetchAllCustomers, action.payload);
+    yield put(actions.fetchAllCustomersSuccess(res));
   } catch (err) {
     console.log(err);
   }
 }
 //////////////////////////////////////////////////////////////////////////////
 
-export function* login() {
-  yield takeAction(actions.login, handleLogin);
+export function* fetchAllCustomers() {
+  yield takeAction(actions.fetchAllCustomers, handlefetchAllCustomers);
 }
 //////////////////////////////////////////////////////////////////////////////
 
-export default [login];
+export default [fetchAllCustomers];
