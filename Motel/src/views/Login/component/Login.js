@@ -5,8 +5,8 @@ export default class Login extends PureComponent {
   render() {
     const {actions, data} = this.props;
     return (
-      <Form>
-        <Item fixedLabel>
+      <Form style={{marginTop: 10}}>
+        <Item fixedLabel style={{marginTop: 10}}>
           <Label>Tài khoản</Label>
           <Input
             value={get(data, 'username', '')}
@@ -20,7 +20,7 @@ export default class Login extends PureComponent {
             }
           />
         </Item>
-        <Item fixedLabel last>
+        <Item fixedLabel last style={{marginTop: 10}}>
           <Label>Mật Khẩu</Label>
           <Input
             textContentType="password"
@@ -35,9 +35,11 @@ export default class Login extends PureComponent {
             }
           />
         </Item>
-        <Button rounded primary onPress={() => actions.login({data})}>
-          <Text> Đăng Nhập </Text>
-        </Button>
+        <Item style={{justifyContent: 'center', marginVertical: 10}}>
+          <Button rounded primary onPress={() => actions.login({data})}>
+            <Text> Đăng Nhập </Text>
+          </Button>
+        </Item>
       </Form>
     );
   }

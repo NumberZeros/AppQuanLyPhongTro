@@ -6,10 +6,6 @@ import * as action from '../actions';
 import Login from './Login.js';
 
 class Container extends PureComponent {
-  componentDidMount() {
-    this.props.actions.login();
-  }
-
   render() {
     const {isLoading} = this.props;
     if (isLoading) {

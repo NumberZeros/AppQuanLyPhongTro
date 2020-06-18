@@ -31,9 +31,9 @@ export default function CardMotesl(props) {
       } else {
         res = await API.createMotel(input);
       }
-      console.log("success",res.data);
+      console.log('success', res.data);
     } catch (err) {
-      console.log("errros",err);
+      console.log('errros', err);
     }
   };
   const {navigation, route} = props;

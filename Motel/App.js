@@ -34,8 +34,6 @@ function HomeStackScreen({navigation, props}) {
           ),
         }}
       />
-      <HomeStack.Screen name="Motel" component={CreateMotel} />
-      <HomeStack.Screen name="Customer" component={Customer} />
       <HomeStack.Screen name="Login" component={Login} />
     </HomeStack.Navigator>
   );
@@ -60,9 +58,6 @@ function MotelStackScreen({navigation, props}) {
         }}
       />
       <MotelStack.Screen name="CreateMotel" component={CreateMotel} />
-      <MotelStack.Screen name="Home" component={Home} />
-      <MotelStack.Screen name="Customer" component={Customer} />
-      <MotelStack.Screen name="Login" component={Login} />
     </MotelStack.Navigator>
   );
 }

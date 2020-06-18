@@ -3,7 +3,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {name} from '../reducers';
 import * as action from '../actions';
-import Login from './Login.js';
 import Account from './Account';
 import {Spinner} from 'native-base';
 import {View} from 'react-native';
@@ -20,7 +19,6 @@ class Container extends PureComponent {
     }
     return (
       <React.Fragment>
-        {/* <Login {...this.props} /> */}
         <Account {...this.props} />
       </React.Fragment>
     );

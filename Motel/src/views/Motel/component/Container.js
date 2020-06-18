@@ -33,6 +33,7 @@ function Container(props) {
 function mapStateToProps(state) {
   return {
     ...state[name],
+    isLogin: state.Login.isLogin,
   };
 }
 function mapDispatchToProps(dispatch) {

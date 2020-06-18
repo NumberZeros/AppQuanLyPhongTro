@@ -14,11 +14,20 @@ const initialState = freeze({
 export default handleActions(
   {
     [actions.loginSuccess]: (state, action) => {
+      action.payload;
       return freeze({
         ...state,
         isLoading: false,
         data: action.payload.data,
-        isLogin: action.payload ? true : false,
+        isLogin: true,
+      });
+    },
+    [actions.login]: (state, action) => {
+      return freeze({
+        ...state,
+        isLoading: true,
+        data: action.payload.data,
+        isLogin: !state.isLogin,
       });
     },
     [actions.editAcountSuccess]: (state, action) => {

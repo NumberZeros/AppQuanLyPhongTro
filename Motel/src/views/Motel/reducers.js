@@ -15,11 +15,17 @@ const initialState = freeze({
 export default handleActions(
   {
     [actions.fetchAllMotelSuccess]: (state, action) => {
-      console.log(action.payload)
+      console.log("lol")
       return freeze({
         ...state,
         isLoading: false,
         motels: action.payload.data,
+      });
+    },
+    [actions.clear]: (state, action) => {
+      return freeze({
+        ...state,
+        motels: [],
       });
     },
   },

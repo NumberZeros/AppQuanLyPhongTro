@@ -16,7 +16,7 @@ export default class Login extends PureComponent {
     return (
       <Container>
         <Header />
-        <Content>
+        {/* <Content>
           <Form>
             <Item fixedLabel>
               <Label>Username</Label>
@@ -30,7 +30,7 @@ export default class Login extends PureComponent {
               <Text> Login </Text>
             </Button>
           </Form>
-        </Content>
+        </Content> */}
       </Container>
     );
   }
