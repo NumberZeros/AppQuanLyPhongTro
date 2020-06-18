@@ -1,5 +1,10 @@
 import React from 'react';
-import {SafeAreaView, View, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  FlatList,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {
   Container,
   Header,
@@ -27,11 +32,32 @@ export default function ListItems(props) {
       title: 'Third Item',
     },
   ];
-  const Item = ({title}) => {
+
+  const Item = ({item, index}) => {
+    const setting = {
+      autoClose: true,
+      onOpen: (secId, rowId, direction) => {},
+      onClose: (secId, rowId, direction) => {},
+      right: [
+        {
+          onPress: () => {
+              console.log("item", item)
+          },
+          text: 'Delete',
+          type: 'delete',
+        },
+      ],
+      rowId: index,
+      sectionId: 1,
+    };
     return (
-      <ListItem>
-        <Text> {title} </Text>
-      </ListItem>
+      <Swipeout {...setting}>
+        <TouchableWithoutFeedback>
+          <ListItem>
+            <Text> {item.title} </Text>
+          </ListItem>
+        </TouchableWithoutFeedback>
+      </Swipeout>
     );
   };
 
@@ -40,7 +66,9 @@ export default function ListItems(props) {
       <SafeAreaView style={{flex: 1, marginTop: 10}}>
         <FlatList
           data={datas}
-          renderItem={({item}) => <Item title={item.title} />}
+          renderItem={({item, index}) => {
+            return <Item item={item} index={index} />;
+          }}
           keyExtractor={item => item.id}
         />
       </SafeAreaView>
