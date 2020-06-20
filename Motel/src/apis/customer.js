@@ -31,3 +31,9 @@ export function editContacts(data) {
   const endpoint = `${URL.apiBaseURL}/contacts/${data._id}`;
   return request({endpoint, method: 'PUT', data});
 }
+
+//other
+export function fetchAllMotels() {
+  const endpoint = `${URL.apiBaseURL}/motels`;
+  return request({endpoint, method: 'GET'});
+}

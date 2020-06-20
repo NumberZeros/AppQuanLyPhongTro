@@ -4592,6 +4592,11 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -5749,6 +5754,11 @@ react-native-elements@^1.2.7:
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-form-select-picker@^0.0.81:
+  version "0.0.81"
+  resolved "https://registry.yarnpkg.com/react-native-form-select-picker/-/react-native-form-select-picker-0.0.81.tgz#1091dedb041332f5441c28e546343f4f729a1bb1"
+  integrity sha512-KiCFIjJQIPT2E3caR5AK8GTijnWFxCHKS1eka56xuKo8cF7b/yTfnqIPs8d1tE08/YnhwMiA0bJilKOGTvJpog==
+
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
@@ -5781,6 +5791,13 @@ react-native-keyboard-aware-scroll-view@0.9.1:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-picker-select@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-7.0.0.tgz#4808a1177f997e234bb8505849dfffe1a01fedac"
+  integrity sha512-SO7b7wHfeM07oVTsLhBlT/VDvMXg2aP0Xy5CA+kL7+oV2Bq6nfKTVjpB2+HLVhFik9i/tlq5ROuGdUrfPhl3rg==
+  dependencies:
+    lodash.isequal "^4.5.0"
 
 react-native-ratings@^6.3.0:
   version "6.5.0"
@@ -5815,6 +5832,16 @@ react-native-screens@^2.4.0:
   integrity sha512-7GcXlaj7IIrM4l5Ub7BPTkNQJ2slHGt2bhmfWmW73NTXEv+7pjHlp+JpQO32Yn+O8UQGPFf0rsesfYUdER7ppQ==
   dependencies:
     debounce "^1.2.0"
+
+react-native-select-input-ios@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-select-input-ios/-/react-native-select-input-ios-2.0.5.tgz#95a6b65569513cd5ad6f7b94016b6bd2477c6d18"
+  integrity sha512-3667Zvgjt5tDFu5PvbdnHs6m72k9WTN2PM2nj91xsMGzMCi7Bz2FYU6WjK3JNRT358fFhblKICxBLVJE/1h7yA==
+
+react-native-select-picker@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-select-picker/-/react-native-select-picker-0.0.3.tgz#e2289d862cf3e8f2df61511340271aeb272ab314"
+  integrity sha512-G7T8wcGrGUJNpK1ThKJ6Q1ETRCBaWXvwp4Mz0cBV9mBjAHQd3gKFg4PTLR+lirNbrgY0VBYSkPDzj/oYw5NXvw==
 
 react-native-status-bar-height@^2.2.0:
   version "2.5.0"

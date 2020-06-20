@@ -7,13 +7,16 @@ import Customers from './Customers.js';
 import {isEmpty} from 'lodash';
 
 function Container(props) {
-  const {customers, contacts, actions} = props;
+  const {customers, contacts, motels, actions} = props;
   useEffect(() => {
     if (isEmpty(customers)) {
       actions.fetchAllCustomers();
     }
     if (isEmpty(contacts)) {
       actions.fetchAllContacts();
+    }
+    if (isEmpty(motels)) {
+      actions.fetchAllMotels();
     }
   });
   const {isLoading} = props;

@@ -9,6 +9,7 @@ const initialState = freeze({
   isloading: false,
   customers: [],
   contacts: [],
+  motels:[],
   tabs: 'customers',
 });
 
@@ -32,6 +33,13 @@ export default handleActions(
         ...state,
         isloading: false,
         contacts: action.payload.data,
+      });
+    },
+    [actions.fetchAllMotelsSuccess]: (state, action) => {
+      return freeze({
+        ...state,
+        isloading: false,
+        motels: action.payload.data,
       });
     },
     [actions.onChangeTab]: (state, action) => {

@@ -4,21 +4,21 @@ import {Container, ListItem, Text} from 'native-base';
 import Swipeout from 'react-native-swipeout';
 
 export default function ListItems(props) {
-  const {contacts, navigation} = props;
+  const {contacts, navigation, customers, motels} = props;
 
   const Item = ({item, index}) => {
     const setting = {
       autoClose: true,
       right: [
         {
-          onPress: () => navigation.push('controlContact', {data: item}),
+          onPress: () => navigation.push('controlContact', {data: item, customers, motels}),
           text: 'Sửa',
           type: 'delete',
         },
       ],
       left: [
         {
-          onPress: () => navigation.push('controlContact'),
+          onPress: () => navigation.push('controlContact',{customers, motels}),
           text: 'Thêm khách hàng',
           type: 'primary',
         },
