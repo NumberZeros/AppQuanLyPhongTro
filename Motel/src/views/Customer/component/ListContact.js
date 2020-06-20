@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {SafeAreaView, FlatList, TouchableWithoutFeedback} from 'react-native';
-import {Container, ListItem, Text} from 'native-base';
+import {Container, ListItem, Text, View, Button} from 'native-base';
 import Swipeout from 'react-native-swipeout';
-
+import {get} from 'lodash';
+import moment from 'moment';
 export default function ListItems(props) {
   const {contacts, navigation, customers, motels} = props;
 
@@ -11,24 +13,41 @@ export default function ListItems(props) {
       autoClose: true,
       right: [
         {
-          onPress: () => navigation.push('controlContact', {data: item, customers, motels}),
+          onPress: () =>
+            navigation.push('controlContact', {data: item, customers, motels}),
           text: 'Sửa',
-          type: 'delete',
-        },
-      ],
-      left: [
-        {
-          onPress: () => navigation.push('controlContact',{customers, motels}),
-          text: 'Thêm khách hàng',
           type: 'primary',
         },
       ],
+      // left: [
+      //   {
+      //     onPress: () => navigation.push('controlContact', {customers, motels}),
+      //     text: 'Thêm khách hàng',
+      //     type: 'primary',
+      //   },
+      // ],
     };
     return (
       <Swipeout {...setting}>
         <TouchableWithoutFeedback>
-          <ListItem>
-            <Text>{item.name} </Text>
+          <ListItem
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+            }}>
+            <View>
+              <Text>{get(item, 'name', 'Chưa có thông tin')} </Text>
+            </View>
+            <View>
+              {item.updateAt ? (
+                <Text>
+                  Cập nhật ngày: {moment(item.updateAt).format('DD/MM/YYYY')}{' '}
+                </Text>
+              ) : (
+                <Text>Chưa từng cập nhật</Text>
+              )}
+            </View>
           </ListItem>
         </TouchableWithoutFeedback>
       </Swipeout>
@@ -38,6 +57,13 @@ export default function ListItems(props) {
   return (
     <Container>
       <SafeAreaView style={{flex: 1, marginTop: 10}}>
+        <Button
+          style={{display: 'flex', justifyContent: 'center', marginBottom: 10}}
+          onPress={() =>
+            navigation.push('controlContact', {customers, motels})
+          }>
+          <Text>Thêm Hợp Đồng</Text>
+        </Button>
         <FlatList
           data={contacts}
           renderItem={({item, index}) => {

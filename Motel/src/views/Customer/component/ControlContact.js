@@ -11,17 +11,17 @@ import {
   Button,
   Text,
 } from 'native-base';
+import {Image} from 'react-native';
 // import ImgToBase64 from 'react-native-image-base64';
-// import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 import Select from 'react-native-picker-select';
 import {View} from 'react-native';
-import {get, isEmpty, find, filter} from 'lodash';
+import {get, isEmpty, filter} from 'lodash';
 import * as API from '../../../apis/customer';
 export default function CardMotesl(props) {
   const initState = {
     name: '',
     linkFile: '',
-    note: '',
     motelId: '',
     customerId: '',
   };
@@ -33,9 +33,9 @@ export default function CardMotesl(props) {
     try {
       let res = {};
       if (isEdit) {
-        res = await API.edit(input);
+        res = await API.editContacts(input);
       } else {
-        res = await API.createMotel(input);
+        res = await API.createContacts(input);
       }
       console.log('success', res.data);
     } catch (err) {
@@ -48,7 +48,7 @@ export default function CardMotesl(props) {
       handleInputChange({...initState});
       setEdit(false);
     } else {
-      handleInputChange({...route.params.data});
+      handleInputChange({...route.params.data, updateAt: new Date()});
       setEdit(true);
     }
     setCustomers(route.params.customers);
@@ -72,29 +72,29 @@ export default function CardMotesl(props) {
   );
   // .filter(e => isEmpty(e.label) !== true);
 
-  // const handleImage = () => {
-  //   const options = {
-  //     title: 'Select Avatar',
-  //     customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
-  //     storageOptions: {
-  //       skipBackup: true,
-  //       path: 'images',
-  //     },
-  //   };
-  //   ImagePicker.showImagePicker(options, response => {
-  //     console.log('Response = ', response);
-  //     if (response.didCancel) {
-  //       console.log('User cancelled image picker');
-  //     } else if (response.error) {
-  //       console.log('ImagePicker Error: ', response.error);
-  //     } else if (response.customButton) {
-  //       console.log('User tapped custom button: ', response.customButton);
-  //     } else {
-  //       console.log('image', response.uri);
-  //       // UploadImage(response.uri)
-  //     }
-  //   });
-  // };
+  const handleImage = () => {
+    const options = {
+      title: 'Select Avatar',
+      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(options, response => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        handleInputChange({...input, linkFile: response.uri});
+        // UploadImage(response.uri)
+      }
+    });
+  };
 
   //upload file len firebase
   // const UploadImage = (uri) =>{
@@ -104,12 +104,17 @@ export default function CardMotesl(props) {
   //   })
   // .catch(err => console.log(err));
   // }
-  console.log('props', input.motelId);
   return (
     <Container>
       <Card>
+        {input.linkFile !== '' && (
+          <Image
+            source={{uri: input.linkFile}}
+            style={{height: 200, flex: 1}}
+          />
+        )}
         <Item floatingLabel style={{margin: 20, padding: 5, marginLeft: 5}}>
-          <Label>Tên Phòng</Label>
+          <Label>Tên tìm kiếm cho Hợp Đồng</Label>
           <Input
             placeholder="name"
             value={input.name}
@@ -124,15 +129,12 @@ export default function CardMotesl(props) {
             //   'label',
             //   '',
             // )}
-            onValueChange={e => {
-              console.log('change', e);
-              handleInputChange({...input, motelId: e});
-            }}
+            onValueChange={e => handleInputChange({...input, motelId: e})}
             items={motelsOption}
           />
         </View>
         <View style={{margin: 20, padding: 5}}>
-          <Label>Chọn Phòng</Label>
+          <Label>Chọn Khach Hàng</Label>
           <Select
             // value={get(
             //   find(customersOption, o => o.value === input.motelId),
@@ -143,14 +145,6 @@ export default function CardMotesl(props) {
             items={customersOption}
           />
         </View>
-        <Item floatingLabel style={{margin: 20, padding: 5, marginLeft: 5}}>
-          <Label>Ghi chú</Label>
-          <Input
-            placeholder="note"
-            value={input.note}
-            onChangeText={e => handleInputChange({...input, note: e})}
-          />
-        </Item>
         <CardItem style={{display: 'flex', justifyContent: 'space-around'}}>
           <Button rounded primary onPress={() => handleSave()}>
             <Text>Lưu lại</Text>
@@ -158,11 +152,7 @@ export default function CardMotesl(props) {
           <Button rounded primary onPress={() => navigation.goBack()}>
             <Text>Quay Lại</Text>
           </Button>
-          <Button
-            rounded
-            primary
-            // onPress={() => handleImage()}
-          >
+          <Button rounded primary onPress={() => handleImage()}>
             <Text>Upload Image</Text>
           </Button>
         </CardItem>
