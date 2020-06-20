@@ -138,9 +138,10 @@ export default class App extends PureComponent {
       <Provider store={store}>
         <Fragment>
           <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Home">
-              <Drawer.Screen name="AppPage" component={AppPage} />
-            </Drawer.Navigator>
+            {/* <Drawer.Navigator initialRouteName="Home"> */}
+              {/* <Drawer.Screen name="AppPage" component={AppPage} /> */}
+            {/* </Drawer.Navigator> */}
+            <AppPage />
           </NavigationContainer>
         </Fragment>
       </Provider>

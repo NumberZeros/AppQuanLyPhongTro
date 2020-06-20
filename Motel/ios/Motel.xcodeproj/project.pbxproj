@@ -194,7 +194,6 @@
 				9BD4B4412702F44DBE04B75F /* Pods-Motel-tvOSTests.debug.xcconfig */,
 				BECD8614DA03559F57B7C894 /* Pods-Motel-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -287,7 +286,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1150;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -682,6 +681,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1A0B124371FC50BEE029D91 /* Pods-Motel-MotelTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -705,6 +705,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFB27396043082584B31B3AD /* Pods-Motel-MotelTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = MotelTests/Info.plist;

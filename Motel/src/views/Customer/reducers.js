@@ -27,6 +27,13 @@ export default handleActions(
         customers: action.payload.data,
       });
     },
+    [actions.fetchAllContactsSuccess]: (state, action) => {
+      return freeze({
+        ...state,
+        isloading: false,
+        contacts: action.payload.data,
+      });
+    },
     [actions.onChangeTab]: (state, action) => {
       return freeze({
         ...state,

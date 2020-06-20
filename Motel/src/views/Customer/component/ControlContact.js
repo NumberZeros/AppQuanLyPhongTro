@@ -9,14 +9,17 @@ import {
   Button,
   Text,
 } from 'native-base';
-import DatePicker from 'react-native-datepicker';
+import ImgToBase64 from 'react-native-image-base64';
+import ImagePicker from 'react-native-image-picker';
+import {firebasesApp} from "../../../services/configFireBase"
 
 import {get, isEmpty} from 'lodash';
 import * as API from '../../../apis/motel';
+import { hanldeInputChange } from '../../Motel/actions';
 export default function CardMotesl(props) {
   const initState = {
     name: '',
-    birthDay: '',
+    linkFile: '',
     note: '',
   };
   const [input, handleInputChange] = useState(Object);
@@ -43,7 +46,41 @@ export default function CardMotesl(props) {
       handleInputChange({...route.params.data});
       setEdit(true);
     }
-  }, [initState, props, route]);
+  }, [props]);
+
+  const handleImage= () =>{
+    const options = {
+      title: 'Select Avatar',
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        console.log("image": response.uri)
+        // UploadImage(response.uri)
+      }
+    });
+  }
+
+  const UploadImage = (uri) =>{
+    ImgToBase64.getBase64String(uri)
+  .then( async(base64String) => {
+    // const file = doSomethingWith(base64String);
+    // console.log(JSON.stringify(base64String))
+    const image = await firebasesApp.storage().ref().put(base64String.data);
+    })
+  .catch(err => console.log(err));
+  }
   return (
     <Container>
       <Card>
@@ -55,29 +92,6 @@ export default function CardMotesl(props) {
             onChangeText={e => handleInputChange({...input, name: e})}
           />
         </Item>
-        <DatePicker
-          style={{width: 200}}
-          date={this.state.date}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={e => handleInputChange({...input, birthDay: e})}
-        />
         <Item floatingLabel style={{margin: 20, padding: 5}}>
           <Label>Ghi chú</Label>
           <Input
@@ -92,6 +106,9 @@ export default function CardMotesl(props) {
           </Button>
           <Button rounded primary onPress={() => navigation.goBack()}>
             <Text>Quay Lại</Text>
+          </Button>
+          <Button rounded primary onPress={() => handleImage()}>
+            <Text>Upload Image</Text>
           </Button>
         </CardItem>
       </Card>

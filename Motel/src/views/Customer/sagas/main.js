@@ -11,11 +11,22 @@ export function* handlefetchAllCustomers(action) {
     console.log(err);
   }
 }
+export function* handlefetchAllContacts(action) {
+  try {
+    let res = yield call(API.fetchAllContacts, action.payload);
+    yield put(actions.fetchAllContactsSuccess(res));
+  } catch (err) {
+    console.log(err);
+  }
+}
 //////////////////////////////////////////////////////////////////////////////
 
 export function* fetchAllCustomers() {
   yield takeAction(actions.fetchAllCustomers, handlefetchAllCustomers);
 }
+export function* fetchAllContacts() {
+  yield takeAction(actions.fetchAllContacts, handlefetchAllContacts);
+}
 //////////////////////////////////////////////////////////////////////////////
 
-export default [fetchAllCustomers];
+export default [fetchAllCustomers, fetchAllContacts];

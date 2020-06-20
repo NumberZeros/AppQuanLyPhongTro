@@ -13,7 +13,7 @@ function Container(props) {
       actions.fetchAllCustomers();
     }
     if (isEmpty(contacts)) {
-      actions.fetchAllCustomers();
+      actions.fetchAllContacts();
     }
   });
   const {isLoading} = props;
