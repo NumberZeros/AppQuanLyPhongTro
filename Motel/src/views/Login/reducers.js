@@ -3,6 +3,7 @@ import {handleActions} from 'redux-actions';
 import * as actions from './actions';
 
 export const name = 'Login';
+import {isEmpty} from 'lodash';
 
 const initialState = freeze({
   data: {},
@@ -14,13 +15,20 @@ const initialState = freeze({
 export default handleActions(
   {
     [actions.loginSuccess]: (state, action) => {
-      action.payload;
-      return freeze({
-        ...state,
-        isLoading: false,
-        data: action.payload.data,
-        isLogin: true,
-      });
+      if (isEmpty(action.payload)) {
+        return freeze({
+          ...state,
+          isLoading: false,
+          isLogin: false,
+        });
+      } else {
+        return freeze({
+          ...state,
+          isLoading: false,
+          data: action.payload.data,
+          isLogin: true,
+        });
+      }
     },
     [actions.login]: (state, action) => {
       return freeze({

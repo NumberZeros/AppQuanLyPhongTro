@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {isEmpty} from 'lodash';
 
 export const request = ({endpoint, method, data, param}) => {
   return new Promise((resolve, reject) => {
@@ -11,7 +12,13 @@ export const request = ({endpoint, method, data, param}) => {
     };
     console.log('axios', option);
     return axios(option)
-      .then(res => resolve(res.data))
+      .then(res => {
+        if (isEmpty(res.data.data)) {
+          throw res.data;
+        }
+        console.log('authen', res.data);
+        resolve(res.data);
+      })
       .catch(err => reject(err));
   });
 };

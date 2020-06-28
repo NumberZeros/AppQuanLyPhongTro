@@ -48,6 +48,13 @@ export default handleActions(
         tabs: action.payload.value,
       });
     },
+    [actions.clear]: (state, action) => {
+      const {name} = action.payload;
+      return freeze({
+        ...state,
+        [name]: [],
+      });
+    },
   },
   initialState,
 );

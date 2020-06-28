@@ -6,7 +6,7 @@ import Swipeout from 'react-native-swipeout';
 import * as API from '../../../apis/home';
 import {get} from 'lodash';
 export default function ListItems(props) {
-  const {receipt, navigation, motels} = props;
+  const {receipt, navigation, motels, actions} = props;
 
   const Item = ({item, index}) => {
     const setting = {
@@ -82,6 +82,8 @@ export default function ListItems(props) {
             return <Item item={item} index={index} />;
           }}
           keyExtractor={item => item.id}
+          onEndThreshold={0}
+          onEndReached={() => actions.fetchAllReceipt()}
         />
       </SafeAreaView>
     </Container>

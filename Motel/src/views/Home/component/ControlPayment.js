@@ -32,7 +32,7 @@ export default function CardMotesl(props) {
       } else {
         res = await API.createPayment(input);
       }
-      console.log('success', res.data);
+      navigation.push('Home', {newData: res.data});
     } catch (err) {
       console.log('errros', err);
     }

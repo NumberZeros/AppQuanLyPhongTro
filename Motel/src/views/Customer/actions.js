@@ -14,3 +14,5 @@ export const fetchAllMotelsSuccess = createAction('CUSTOMERS/FETCH_ALL_Motel_SUC
 
 ///other
 export const onChangeTab = createAction('CUSTOMERS/CHANGE_TAB');
+
+export const clear = createAction('CUSTOMERS/CLEAR');

@@ -24,7 +24,7 @@ export default function CardMotesl(props) {
     quantityPower: Number,
     quantityWater: Number,
     prices: Number,
-    pricesOther: String,
+    pricesOther: Number,
     motel: Number,
   };
   const [input, handleInputChange] = useState(Object);
@@ -36,9 +36,9 @@ export default function CardMotesl(props) {
       if (isEdit) {
         res = await API.editReceipt(input);
       } else {
-        res = await API.createReeditReceipt(input);
+        res = await API.createReceipt(input);
       }
-      console.log('success', res.data);
+      navigation.push('Home', {newData: res.data});
     } catch (err) {
       console.log('errros', err);
     }

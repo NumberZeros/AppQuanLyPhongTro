@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   Container,
@@ -119,12 +120,17 @@ export default function SegmentOutsideHeaderExample(props) {
               </CardItem>
             </Card>
           )}
-          <CardItem
+          <View
             footer
             bordered
-            style={{display: 'flex', justifyContent: 'center'}}>
+            style={{display: 'flex', justifyContent: 'center', padding: 3}}>
             {isEdit ? (
-              <View>
+              <Item
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  flex: 1,
+                }}>
                 <Button info onPress={() => setEdit(!isEdit)}>
                   <Text>Huỷ bỏ</Text>
                 </Button>
@@ -136,13 +142,16 @@ export default function SegmentOutsideHeaderExample(props) {
                   }}>
                   <Text>Lưu lại</Text>
                 </Button>
-              </View>
+              </Item>
             ) : (
-              <Button info onPress={() => setEdit(!isEdit)}>
+              <Button
+                style={{display: 'flex', justifyContent: 'center'}}
+                info
+                onPress={() => setEdit(!isEdit)}>
                 <Text>Sửa thông tin tài khoản</Text>
               </Button>
             )}
-          </CardItem>
+          </View>
         </Content>
       )}
     </Container>

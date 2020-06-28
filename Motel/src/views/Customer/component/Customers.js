@@ -14,7 +14,6 @@ import ListCustomer from './ListCustomer';
 import ListContact from './ListContact';
 
 export default function SegmentOutsideHeaderExample(props) {
-  // const [isEdit, setEdit] = useState(false);
   const {actions, tabs, isLogin, navigation} = props;
   if (isLogin === true) {
     return (

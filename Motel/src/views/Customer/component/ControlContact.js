@@ -38,6 +38,7 @@ export default function CardMotesl(props) {
         res = await API.createContacts(input);
       }
       console.log('success', res.data);
+      navigation.push('Customer', {newData: res.data});
     } catch (err) {
       console.log('errros', err);
     }
