@@ -21,6 +21,7 @@ import ControlCustomer from './src/views/Customer/component/ControlCustomer';
 
 //home
 import ControlPayment from './src/views/Home/component/ControlPayment';
+import ControlReceipt from './src/views/Home/component/ControlReceipt';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,7 @@ function HomeStackScreen({navigation, props}) {
         }}
       />
       <CustomerStack.Screen name="controlPayment" component={ControlPayment} />
+      <CustomerStack.Screen name="ControlReceipt" component={ControlReceipt} />
     </HomeStack.Navigator>
   );
 }

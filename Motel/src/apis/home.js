@@ -20,24 +20,24 @@ export function deleteCusomter(data) {
   const endpoint = `${URL.apiBaseURL}/payments/${data._id}`;
   return request({endpoint, method: 'DELETE', data});
 }
-//contact
-export function fetchAllContacts() {
-  const endpoint = `${URL.apiBaseURL}/contacts`;
+//fetchAllReceipt
+export function fetchAllReceipt() {
+  const endpoint = `${URL.apiBaseURL}/receipts`;
   return request({endpoint, method: 'GET'});
 }
 
-export function createContacts(data) {
-  const endpoint = `${URL.apiBaseURL}/contacts/create`;
+export function createReceipt(data) {
+  const endpoint = `${URL.apiBaseURL}/receipts/create`;
   return request({endpoint, method: 'POST', data});
 }
 
-export function editContacts(data) {
-  const endpoint = `${URL.apiBaseURL}/contacts/${data._id}`;
+export function editReceipt(data) {
+  const endpoint = `${URL.apiBaseURL}/receipts/${data._id}`;
   return request({endpoint, method: 'PUT', data});
 }
 
-export function deleteContacts(data) {
-  const endpoint = `${URL.apiBaseURL}/contacts/${data._id}`;
+export function deleteReceipt(data) {
+  const endpoint = `${URL.apiBaseURL}/receipts/${data._id}`;
   return request({endpoint, method: 'DELETE', data});
 }
 

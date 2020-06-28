@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Container,
   Card,
@@ -11,26 +11,32 @@ import {
   Button,
   Text,
 } from 'native-base';
+import {View} from 'react-native';
 
-import {get, isEmpty} from 'lodash';
+import Select from 'react-native-picker-select';
+
+import {get, isEmpty, find} from 'lodash';
 import * as API from '../../../apis/home';
+import {filter} from  "lodash"
 export default function CardMotesl(props) {
   let initState = {
     name: String,
     quantityPower: Number,
     quantityWater: Number,
     prices: Number,
-    pricesOther: Number,
+    pricesOther: String,
+    motel: Number,
   };
   const [input, handleInputChange] = useState(Object);
   const [isEdit, setEdit] = useState(false);
+  const [motels, setMotelsOption] = useState(Array);
   const handleSave = async () => {
     try {
       let res = {};
       if (isEdit) {
-        res = await API.editPayment(input);
+        res = await API.editReceipt(input);
       } else {
-        res = await API.createPayment(input);
+        res = await API.createReeditReceipt(input);
       }
       console.log('success', res.data);
     } catch (err) {
@@ -45,8 +51,10 @@ export default function CardMotesl(props) {
       quantityWater,
       prices,
       pricesOther,
+      motel,
       _id,
     } = route.params.data;
+    setMotelsOption(route.params.motels);
     if (isEmpty(get(route, 'params.data', ''))) {
       handleInputChange({...initState});
       setEdit(false);
@@ -58,16 +66,25 @@ export default function CardMotesl(props) {
         quantityWater: JSON.stringify(quantityWater),
         prices: JSON.stringify(prices),
         pricesOther: JSON.stringify(pricesOther),
+        motel: JSON.stringify(motel),
       });
       setEdit(true);
     }
   }, [props]);
 
+  const motelsOption = filter(
+    motels.map(o => ({
+      label: o.name,
+      value: o._id,
+    })),
+    e => isEmpty(e.label) !== true,
+  );
+
   return (
     <Container>
       <Card>
         <Item floatingLabel style={{margin: 20, padding: 5}}>
-          <Label>Tên phiếu chi</Label>
+          <Label>Tên phiếu thu</Label>
           <Input
             placeholder="name"
             value={input.name}
@@ -109,6 +126,13 @@ export default function CardMotesl(props) {
             onChangeText={e => handleInputChange({...input, pricesOther: e})}
           />
         </Item>
+        <View floatingLabel style={{margin: 20, padding: 5}}>
+          <Label>Chọn Phòng</Label>
+          <Select
+            onValueChange={e => handleInputChange({...input, motel: e})}
+            items={motelsOption}
+          />
+        </View>
         <CardItem style={{display: 'flex', justifyContent: 'space-around'}}>
           <Button rounded primary onPress={() => handleSave()}>
             <Text>Lưu lại</Text>

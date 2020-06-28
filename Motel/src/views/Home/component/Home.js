@@ -12,11 +12,11 @@ import {
 } from 'native-base';
 
 import ListPayment from './ListPayment';
-// import ListContact from './ListContact';
+import ListReceipt from './ListReceipt';
 
 export default function SegmentOutsideHeaderExample(props) {
   const {actions, tabs, isLogin, navigation} = props;
-  if (true) {
+  if (isLogin) {
     return (
       <Container>
         <Segment>
@@ -29,7 +29,7 @@ export default function SegmentOutsideHeaderExample(props) {
           <Button
             active={tabs === 'contacts'}
             onPress={() => actions.onChangeTab({value: 'contacts'})}>
-            <Text>Danh Sách Hợp Đồng</Text>
+            <Text>Danh Sách Phiếu Thu</Text>
           </Button>
         </Segment>
         {tabs === 'Payments' ? (
@@ -37,7 +37,9 @@ export default function SegmentOutsideHeaderExample(props) {
             <ListPayment {...props} />
           </Content>
         ) : (
-          <Content padder>{/* <ListContact {...props} /> */}</Content>
+          <Content padder>
+            <ListReceipt {...props} />
+            </Content>
         )}
       </Container>
     );

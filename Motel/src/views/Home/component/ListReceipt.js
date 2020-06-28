@@ -1,22 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {SafeAreaView, FlatList, TouchableWithoutFeedback} from 'react-native';
-import {Container, ListItem, Text, View, Button} from 'native-base';
+import {Container, ListItem, Text, Button, View} from 'native-base';
 import Swipeout from 'react-native-swipeout';
+import * as API from '../../../apis/home';
 import {get} from 'lodash';
-import moment from 'moment';
-import * as API from '../../../apis/customer';
-
 export default function ListItems(props) {
-  const {contacts, navigation, customers, motels} = props;
+  const {receipt, navigation, motels} = props;
 
   const Item = ({item, index}) => {
     const setting = {
       autoClose: true,
       right: [
         {
-          onPress: () =>
-            navigation.push('controlContact', {data: item, customers, motels}),
+          onPress: () => navigation.push('ControlReceipt', {data: item, motels}),
           text: 'Sửa',
           type: 'primary',
         },
@@ -26,13 +23,13 @@ export default function ListItems(props) {
           onPress: async () => {
             try {
               let res = {};
-              res = await API.deleteContacts(item);
+              res = await API.editReceipt({...item, status: true});
               console.log(res);
             } catch (err) {
               console.log('errros', err);
             }
           },
-          text: 'Xoá',
+          text: 'Thanh Toán',
           type: 'delete',
         },
       ],
@@ -46,17 +43,24 @@ export default function ListItems(props) {
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}>
-            <View>
+            <View style={{margin: 2}}>
               <Text>{get(item, 'name', 'Chưa có thông tin')} </Text>
             </View>
-            <View>
-              {item.updateAt ? (
-                <Text>
-                  Cập nhật ngày: {moment(item.updateAt).format('DD/MM/YYYY')}{' '}
-                </Text>
-              ) : (
-                <Text>Chưa từng cập nhật</Text>
-              )}
+            <View style={{margin: 2}}>
+              <Text>
+                {' '}
+                Số tiền thanh toán: {get(
+                  item,
+                  'prices',
+                  'Chưa có thông tin',
+                )}{' '}
+              </Text>
+            </View>
+            <View style={{margin: 2}}>
+              <Text>
+                {' '}
+                Trạng thái thanh toán: {item.status === true ? 'Đã thanh toán ' : 'Chưa thanh toán'}{' '}
+              </Text>
             </View>
           </ListItem>
         </TouchableWithoutFeedback>
@@ -69,13 +73,11 @@ export default function ListItems(props) {
       <SafeAreaView style={{flex: 1, marginTop: 10}}>
         <Button
           style={{display: 'flex', justifyContent: 'center', marginBottom: 10}}
-          onPress={() =>
-            navigation.push('controlContact', {customers, motels})
-          }>
-          <Text>Thêm Hợp Đồng</Text>
+          onPress={() => navigation.push('ControlReceipt', {data: {}, motels})}>
+          <Text>Thêm Phiếu Thu</Text>
         </Button>
         <FlatList
-          data={contacts}
+          data={receipt}
           renderItem={({item, index}) => {
             return <Item item={item} index={index} />;
           }}

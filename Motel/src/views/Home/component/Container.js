@@ -7,17 +7,17 @@ import Home from './Home.js';
 import {isEmpty} from 'lodash';
 
 function Container(props) {
-  const {payment, contacts, motels, actions} = props;
+  const {payment, receipt, motels, actions} = props;
   useEffect(() => {
     if (isEmpty(payment)) {
       actions.fetchAllPayment();
     }
-    // if (isEmpty(contacts)) {
-    //   actions.fetchAllContacts();
-    // }
-    // if (isEmpty(motels)) {
-    //   actions.fetchAllMotels();
-    // }
+    if (isEmpty(receipt)) {
+      actions.fetchAllReceipt();
+    }
+    if (isEmpty(motels)) {
+      actions.fetchAllMotels();
+    }
   });
   const {isLoading} = props;
   if (isLoading) {

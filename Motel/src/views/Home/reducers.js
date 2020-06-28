@@ -8,7 +8,7 @@ const initialState = freeze({
   data: {},
   isloading: false,
   payment: [],
-  contacts: [],
+  receipt: [],
   motels:[],
   tabs: 'Payments',
 });
@@ -28,11 +28,11 @@ export default handleActions(
         payment: action.payload.data,
       });
     },
-    [actions.fetchAllContactsSuccess]: (state, action) => {
+    [actions.fetchAllReceiptSuccess]: (state, action) => {
       return freeze({
         ...state,
         isloading: false,
-        contacts: action.payload.data,
+        receipt: action.payload.data,
       });
     },
     [actions.fetchAllMotelsSuccess]: (state, action) => {

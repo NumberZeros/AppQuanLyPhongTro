@@ -5,8 +5,8 @@ export const fetchAllPayment = createAction('HOME/FETCH_ALL_PAYMENT');
 export const fetchAllPaymentSuccess = createAction('HOME/FETCH_ALL_PAYMENT_SUCCESS');
 
 //contact
-export const fetchAllContacts = createAction('HOME/FETCH_ALL_CONTACTS');
-export const fetchAllContactsSuccess = createAction('HOME/FETCH_ALL_CONTACTS_SUCCESS');
+export const fetchAllReceipt = createAction('HOME/FETCH_ALL_Receipt');
+export const fetchAllReceiptSuccess = createAction('HOME/FETCH_ALL_Receipt_SUCCESS');
 
 //contact
 export const fetchAllMotels = createAction('HOME/FETCH_ALL_Motel');

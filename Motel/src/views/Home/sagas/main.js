@@ -5,17 +5,16 @@ import {takeAction} from '../../../services/forkActionSagas';
 
 export function* handlefetchAllPayment(action) {
   try {
-    console.log("add")
     let res = yield call(API.fetchAllPayment, action.payload);
     yield put(actions.fetchAllPaymentSuccess(res));
   } catch (err) {
     console.log(err);
   }
 }
-export function* handlefetchAllContacts(action) {
+export function* handlefetchAllReceipt(action) {
   try {
-    let res = yield call(API.fetchAllContacts, action.payload);
-    yield put(actions.fetchAllContactsSuccess(res));
+    let res = yield call(API.fetchAllReceipt, action.payload);
+    yield put(actions.fetchAllReceiptSuccess(res));
   } catch (err) {
     console.log(err);
   }
@@ -34,12 +33,12 @@ export function* handlefetchAllMotels(action) {
 export function* fetchAllPayment() {
   yield takeAction(actions.fetchAllPayment, handlefetchAllPayment);
 }
-export function* fetchAllContacts() {
-  yield takeAction(actions.fetchAllContacts, handlefetchAllContacts);
+export function* fetchAllReceipt() {
+  yield takeAction(actions.fetchAllReceipt, handlefetchAllReceipt);
 }
 export function* fetchAllMotels() {
   yield takeAction(actions.fetchAllMotels, handlefetchAllMotels);
 }
 //////////////////////////////////////////////////////////////////////////////
 
-export default [fetchAllPayment, fetchAllContacts, fetchAllMotels];
+export default [fetchAllPayment, fetchAllReceipt, fetchAllMotels];

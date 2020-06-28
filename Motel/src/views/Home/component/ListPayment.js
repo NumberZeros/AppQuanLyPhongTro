@@ -30,7 +30,7 @@ export default function ListItems(props) {
             }
           },
           text: 'Xoá',
-          type: 'primary',
+          type: 'delete',
         },
       ],
     };
@@ -43,10 +43,10 @@ export default function ListItems(props) {
               flexDirection: 'column',
               alignItems: 'flex-start',
             }}>
-            <View>
+            <View style={{margin: 2}}>
               <Text>{get(item, 'name', 'Chưa có thông tin')} </Text>
             </View>
-            <View>
+            <View style={{margin: 2}}>
               <Text>
                 {' '}
                 Số tiền thanh toán: {get(

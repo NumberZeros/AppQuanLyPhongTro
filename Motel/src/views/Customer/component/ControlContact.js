@@ -18,7 +18,6 @@ import {View} from 'react-native';
 import {get, isEmpty, filter} from 'lodash';
 import * as API from '../../../apis/customer';
 import {firebasesApp} from '../../../services/configFireBase';
-// import firebase, {storage} from 'firebase';
 export default function CardMotesl(props) {
   const initState = {
     name: '',
