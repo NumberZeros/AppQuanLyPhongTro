@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Container,
@@ -10,21 +11,20 @@ import {
   Label,
 } from 'native-base';
 
-import ListCustomer from './ListCustomer';
-import ListContact from './ListContact';
+import ListPayment from './ListPayment';
+// import ListContact from './ListContact';
 
 export default function SegmentOutsideHeaderExample(props) {
-  // const [isEdit, setEdit] = useState(false);
   const {actions, tabs, isLogin, navigation} = props;
-  if (isLogin === true) {
+  if (true) {
     return (
       <Container>
         <Segment>
           <Button
             first
-            active={tabs === 'customers'}
-            onPress={() => actions.onChangeTab({value: 'customers'})}>
-            <Text>Danh Sách Kháh Hàng</Text>
+            active={tabs === 'Payments'}
+            onPress={() => actions.onChangeTab({value: 'Payments'})}>
+            <Text>Danh Sách Phiếu chi</Text>
           </Button>
           <Button
             active={tabs === 'contacts'}
@@ -32,14 +32,12 @@ export default function SegmentOutsideHeaderExample(props) {
             <Text>Danh Sách Hợp Đồng</Text>
           </Button>
         </Segment>
-        {tabs === 'customers' ? (
+        {tabs === 'Payments' ? (
           <Content padder>
-            <ListCustomer {...props} />
+            <ListPayment {...props} />
           </Content>
         ) : (
-          <Content padder>
-            <ListContact {...props} />
-          </Content>
+          <Content padder>{/* <ListContact {...props} /> */}</Content>
         )}
       </Container>
     );

@@ -1,29 +1,39 @@
-import React, {PureComponent} from 'react';
+import React, {useEffect} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {name} from '../reducers';
 import * as action from '../actions';
-import Login from './Login.js';
+import Home from './Home.js';
+import {isEmpty} from 'lodash';
 
-class Container extends PureComponent {
-
-
-  render() {
-    const {isLoading} = this.props;
-    if (isLoading) {
-      // return <div className="loading" />;
+function Container(props) {
+  const {payment, contacts, motels, actions} = props;
+  useEffect(() => {
+    if (isEmpty(payment)) {
+      actions.fetchAllPayment();
     }
-    return (
-      <React.Fragment>
-        <Login {...this.props} />
-      </React.Fragment>
-    );
+    // if (isEmpty(contacts)) {
+    //   actions.fetchAllContacts();
+    // }
+    // if (isEmpty(motels)) {
+    //   actions.fetchAllMotels();
+    // }
+  });
+  const {isLoading} = props;
+  if (isLoading) {
+    return <div className="loading" />;
   }
+  return (
+    <React.Fragment>
+      <Home {...props} />
+    </React.Fragment>
+  );
 }
 
 function mapStateToProps(state) {
   return {
     ...state[name],
+    isLogin: state.Login.isLogin,
   };
 }
 function mapDispatchToProps(dispatch) {

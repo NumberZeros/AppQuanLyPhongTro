@@ -1,23 +1,23 @@
 import {request} from '../services/services';
 import {URL} from '../services/config';
 ///customer
-export function fetchAllCustomers() {
-  const endpoint = `${URL.apiBaseURL}/customers`;
+export function fetchAllPayment() {
+  const endpoint = `${URL.apiBaseURL}/payments`;
   return request({endpoint, method: 'GET'});
 }
 
-export function createCustomer(data) {
-  const endpoint = `${URL.apiBaseURL}/customers/create`;
+export function createPayment(data) {
+  const endpoint = `${URL.apiBaseURL}/payments/create`;
   return request({endpoint, method: 'POST', data});
 }
 
-export function editCustomer(data) {
-  const endpoint = `${URL.apiBaseURL}/customers/${data._id}`;
+export function editPayment(data) {
+  const endpoint = `${URL.apiBaseURL}/payments/${data._id}`;
   return request({endpoint, method: 'PUT', data});
 }
 
 export function deleteCusomter(data) {
-  const endpoint = `${URL.apiBaseURL}/customers/${data._id}`;
+  const endpoint = `${URL.apiBaseURL}/payments/${data._id}`;
   return request({endpoint, method: 'DELETE', data});
 }
 //contact

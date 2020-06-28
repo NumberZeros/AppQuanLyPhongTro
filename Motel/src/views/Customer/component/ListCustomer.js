@@ -3,7 +3,7 @@ import React from 'react';
 import {SafeAreaView, FlatList, TouchableWithoutFeedback} from 'react-native';
 import {Container, ListItem, Text, Button} from 'native-base';
 import Swipeout from 'react-native-swipeout';
-
+import * as API from '../../../apis/customer';
 export default function ListItems(props) {
   const {customers, navigation} = props;
 
@@ -17,13 +17,21 @@ export default function ListItems(props) {
           type: 'primary',
         },
       ],
-      // left: [
-      //   {
-      //     onPress: () => navigation.push('controlCustomer'),
-      //     text: 'Thêm khách hàng',
-      //     type: 'primary',
-      //   },
-      // ],
+      left: [
+        {
+          onPress: async () => {
+            try {
+              let res = {};
+              res = await API.deleteCusomter(item);
+              console.log(res);
+            } catch (err) {
+              console.log('errros', err);
+            }
+          },
+          text: 'Xoá',
+          type: 'primary',
+        },
+      ],
     };
     return (
       <Swipeout {...setting}>

@@ -12,12 +12,14 @@ import {
 import DatePicker from 'react-native-datepicker';
 
 import {get, isEmpty} from 'lodash';
-import * as API from '../../../apis/customer';
+import * as API from '../../../apis/home';
 export default function CardMotesl(props) {
   const initState = {
-    name: '',
-    birthDay: '',
-    note: '',
+    name: String,
+    quantityPower: String,
+    quantityWater: String,
+    prices: Number,
+    pricesOther: Number,
   };
   const [input, handleInputChange] = useState(Object);
   const [isEdit, setEdit] = useState(false);
@@ -25,9 +27,9 @@ export default function CardMotesl(props) {
     try {
       let res = {};
       if (isEdit) {
-        res = await API.editCustomer(input);
+        res = await API.editPayment(input);
       } else {
-        res = await API.createCustomer(input);
+        res = await API.createPayment(input);
       }
       console.log('success', res.data);
     } catch (err) {
@@ -48,7 +50,7 @@ export default function CardMotesl(props) {
     <Container>
       <Card>
         <Item floatingLabel style={{margin: 20, padding: 5}}>
-          <Label>Tên Phòng</Label>
+          <Label>Tên Khách Hàng</Label>
           <Input
             placeholder="name"
             value={input.name}
