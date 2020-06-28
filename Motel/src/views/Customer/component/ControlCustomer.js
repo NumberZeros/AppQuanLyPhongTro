@@ -37,13 +37,14 @@ export default function CardMotesl(props) {
     }
   };
   const {navigation, route} = props;
-  const {name, birthDay, note} = route.params.data;
+  const {name, birthDay, note, _id} = route.params.data;
   useEffect(() => {
     if (isEmpty(get(route, 'params.data', ''))) {
       handleInputChange({...initState});
       setEdit(false);
     } else {
       handleInputChange({
+        _id,
         name: name,
         // birthDay: JSON.stringify(birthDay),
         note: note,
@@ -62,27 +63,29 @@ export default function CardMotesl(props) {
             onChangeText={e => handleInputChange({...input, name: e})}
           />
         </Item>
-        <DatePicker
-          style={{width: 400}}
-          date={input.birthDay}
-          mode="date"
-          placeholder="Ngày sinh"
-          format="YYYY-MM-DD"
-          confirmBtnText="Lưu Lại"
-          cancelBtnText="Huỷ"
-          customStyles={{
-            dateIcon: {
-              position: 'absolute',
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-          }}
-          onDateChange={e => handleInputChange({...input, birthDay: e})}
-        />
+        {isEdit === false && (
+          <DatePicker
+            style={{width: 400}}
+            date={input.birthDay}
+            mode="date"
+            placeholder="Ngày sinh"
+            format="YYYY-MM-DD"
+            confirmBtnText="Lưu Lại"
+            cancelBtnText="Huỷ"
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+              },
+            }}
+            onDateChange={e => handleInputChange({...input, birthDay: e})}
+          />
+        )}
         <Item floatingLabel style={{margin: 20, padding: 5}}>
           <Label>Ghi chú</Label>
           <Input

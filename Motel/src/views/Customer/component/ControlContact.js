@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import {
   Container,
   Card,
@@ -121,7 +121,7 @@ export default function CardMotesl(props) {
           .child(uri)
           .getDownloadURL()
           .then(url => {
-            console.log('firebase', JSON.stringify(url) );
+            console.log('firebase', JSON.stringify(url));
           });
       },
     );
@@ -144,30 +144,36 @@ export default function CardMotesl(props) {
             onChangeText={e => handleInputChange({...input, name: e})}
           />
         </Item>
-        <View style={{margin: 20, padding: 5}}>
-          <Label>Chọn Phòng</Label>
-          <Select
-            // value={get(
-            //   find(motelsOption, o => o.value === input.motelId),
-            //   'label',
-            //   '',
-            // )}
-            onValueChange={e => handleInputChange({...input, motelId: e})}
-            items={motelsOption}
-          />
-        </View>
-        <View style={{margin: 20, padding: 5}}>
-          <Label>Chọn Khach Hàng</Label>
-          <Select
-            // value={get(
-            //   find(customersOption, o => o.value === input.motelId),
-            //   'label',
-            //   '',
-            // )}
-            onValueChange={e => handleInputChange({...input, customerId: e})}
-            items={customersOption}
-          />
-        </View>
+        {isEdit === false && (
+          <Fragment>
+            <View style={{margin: 20, padding: 5}}>
+              <Label>Chọn Phòng</Label>
+              <Select
+                // value={get(
+                //   find(motelsOption, o => o.value === input.motelId),
+                //   'label',
+                //   '',
+                // )}
+                onValueChange={e => handleInputChange({...input, motelId: e})}
+                items={motelsOption}
+              />
+            </View>
+            <View style={{margin: 20, padding: 5}}>
+              <Label>Chọn Khach Hàng</Label>
+              <Select
+                // value={get(
+                //   find(customersOption, o => o.value === input.motelId),
+                //   'label',
+                //   '',
+                // )}
+                onValueChange={e =>
+                  handleInputChange({...input, customerId: e})
+                }
+                items={customersOption}
+              />
+            </View>
+          </Fragment>
+        )}
         <CardItem style={{display: 'flex', justifyContent: 'space-around'}}>
           <Button rounded primary onPress={() => handleSave()}>
             <Text>Lưu lại</Text>
@@ -175,9 +181,9 @@ export default function CardMotesl(props) {
           <Button rounded primary onPress={() => navigation.goBack()}>
             <Text>Quay Lại</Text>
           </Button>
-          <Button rounded primary onPress={() => handleImage()}>
+          {/* <Button rounded primary onPress={() => handleImage()}>
             <Text>Upload Image</Text>
-          </Button>
+          </Button> */}
         </CardItem>
       </Card>
     </Container>

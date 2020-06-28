@@ -13,7 +13,8 @@ export default function ListItems(props) {
       autoClose: true,
       right: [
         {
-          onPress: () => navigation.push('ControlReceipt', {data: item, motels}),
+          onPress: () =>
+            navigation.push('ControlReceipt', {data: item, motels}),
           text: 'Sửa',
           type: 'primary',
         },
@@ -24,7 +25,7 @@ export default function ListItems(props) {
             try {
               let res = {};
               res = await API.editReceipt({...item, status: true});
-              console.log(res);
+              actions.fetchAllReceipt();
             } catch (err) {
               console.log('errros', err);
             }
@@ -59,7 +60,10 @@ export default function ListItems(props) {
             <View style={{margin: 2}}>
               <Text>
                 {' '}
-                Trạng thái thanh toán: {item.status === true ? 'Đã thanh toán ' : 'Chưa thanh toán'}{' '}
+                Trạng thái thanh toán:{' '}
+                {item.status === true
+                  ? 'Đã thanh toán '
+                  : 'Chưa thanh toán'}{' '}
               </Text>
             </View>
           </ListItem>

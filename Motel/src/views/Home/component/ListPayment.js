@@ -24,6 +24,7 @@ export default function ListItems(props) {
             try {
               let res = {};
               res = await API.deleteCusomter(item);
+              actions.fetchAllPayment();
               console.log(res);
             } catch (err) {
               console.log('errros', err);

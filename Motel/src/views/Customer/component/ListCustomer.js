@@ -23,13 +23,14 @@ export default function ListItems(props) {
             try {
               let res = {};
               res = await API.deleteCusomter(item);
+              await actions.fetchAllCustomers();
               console.log(res);
             } catch (err) {
               console.log('errros', err);
             }
           },
           text: 'Xoá',
-          type: 'primary',
+          type: 'delete',
         },
       ],
     };
