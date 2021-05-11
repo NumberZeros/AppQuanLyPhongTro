@@ -17,7 +17,7 @@
     "@react-navigation/stack": "^5.2.10",
     "axios": "^0.19.2",
     "deep-freeze": "^0.0.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "native-base": "^2.13.12",
     "react": "16.11.0",
